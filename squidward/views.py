@@ -25,12 +25,12 @@ def report_index(request):
     юзерам, http://10.87.250.26/reports/
     """
     first_date = SquidFullData.objects.raw(
-        '''SELECT 1 as id, min(datetime) as first
+        '''SELECT 1 as id, coalesce(min(datetime), 0) as first
            FROM squidward_squidfulldata
         '''
     )
     last_date = SquidFullData.objects.raw(
-        '''SELECT 1 as id, max(datetime) as last
+        '''SELECT 1 as id, coalesce(max(datetime), 0) as last
     FROM squidward_squidfulldata
         '''
     )
@@ -71,15 +71,12 @@ def report_manual(request, fromdate, untildate, user_ip=None):
     Пример http://10.87.250.26/reports/manual/1518987600_1519506000/
     """
     fromdate, untildate, user_ip = int(fromdate), int(untildate) + 86400, str(user_ip)
-    try:
-        pptpip_sum = SquidFullData.objects.raw('''
-          SELECT 1 as id, pptpip, trunc(sum(size)/1000000, 3) as sum
-          FROM  squidward_squidfulldata
-          WHERE datetime BETWEEN %s AND %s
-          GROUP BY pptpip
-          ORDER BY sum DESC''' % (fromdate, untildate))
-    except SquidFullData.DoesNotExist:
-        raise Http404('Запись не существует')
+    pptpip_sum = SquidFullData.objects.raw('''
+      SELECT 1 as id, pptpip, trunc(sum(size)/1000000, 3) as sum
+      FROM  squidward_squidfulldata
+      WHERE datetime BETWEEN %s AND %s
+      GROUP BY pptpip
+      ORDER BY sum DESC''' % (fromdate, untildate))
 
     date_start = datetime.datetime.fromtimestamp(fromdate).strftime('%d %b %Y')
     date_stop = datetime.datetime.fromtimestamp(untildate).strftime('%d %b %Y')
@@ -89,10 +86,6 @@ def report_manual(request, fromdate, untildate, user_ip=None):
                                                   'date_stop': date_stop,
                                                   'fromdate': fromdate,
                                                   'untildate': untildate})
-
-
-
-
 
 
 @login_required
@@ -105,7 +98,7 @@ def report_manual_user(request, fromdate, untildate, user_ip):
     fromdate, untildate, user_ip = int(fromdate), int(untildate), str(user_ip)
     try:
         pptpip_sum = SquidFullData.objects.raw('''
-          SELECT 1 as id, 
+          SELECT 1 as id,
           pptpip, resource, trunc(sum(size)/1000000, 3) as sum
           FROM  squidward_squidfulldata
           WHERE datetime BETWEEN %d AND %d AND pptpip = '%s'
@@ -136,12 +129,12 @@ def report_index_pptp(request):
     Пример http://10.87.250.26/reports/pptp/
     """
     first_date = SquidFullData.objects.raw(
-        '''SELECT 1 as id, min(datetime) as first
+        '''SELECT 1 as id, coalesce(min(datetime), 0) as first
            FROM squidward_squidfulldata
         '''
     )
     last_date = SquidFullData.objects.raw(
-        '''SELECT 1 as id, max(datetime) as last
+        '''SELECT 1 as id, coalesce(max(datetime), 0) as last
     FROM squidward_squidfulldata
         '''
     )
@@ -239,4 +232,3 @@ def report_top_month(request):
     return HttpResponseRedirect(
         '/reports/manual/%s_%s/' % (day_month_ago, last_mon)
     )
-

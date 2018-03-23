@@ -87,9 +87,9 @@ nav a {
 
 }
 
-#footer {
-    width: 100%;
-}
+/* #header { */
+    /* width: 100%; */
+/* } */
 
 .auth_login {
     display: inline-block;
