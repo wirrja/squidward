@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Squidward is watching you!{% endblock %}
+
+{% block head %}{{ block.super }}
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <!--<link rel="stylesheet" href="/resources/demos/style.css">-->
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  month_names = [
+      "Январь", "Февраль", "Март", "Апрель",
+      "Май", "Июнь", "Июль", "Август",
+      "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"
+  ]
+  day_names = [
+      "Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб",
+  ]
+  $( function() {
+    $( "#id_date_start" ).datepicker({"monthNames": month_names,
+        "dayNamesMin": day_names,
+        "firstDay": 1});
+  } );
+    $( function() {
+    $( "#id_date_stop" ).datepicker({"monthNames": month_names,
+        "dayNamesMin": day_names,
+        "firstDay": 1});
+
+  } );
+
+  </script>
+{% endblock %}
+
+{% block content %}
+
+    <div class="index_report">
+        <form id="choose_date" method="post">
+            <caption><h5>База охватывает период {{ first_date }} - {{ last_date }}</h5></caption>
+
+
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            {% for field in form.visible_fields %}
+            <label>{{ field.label }}</label>{{ field }}
+            {% endfor %}
+
+
+
+        <button type="submit" class="btn btn-default" value="OK">Сгенерировать</button>
+        </form>
+    </div>
+{% endblock %}
+
+
+
+

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Squidward is watching you{% endblock %}
+
+
+{% block content %}
+
+<div class="container" style="padding-top: 5%">
+
+  <div class="col-sm-6">
+      <img src="{% static 'squid.gif' %}" class="img-circle" alt="кальмар"/>
+  </div>
+  <div class="col-sm-6" align="right">
+    <h1>Squidward - логи для УТОПО.</h1>
+    <blockquote class="blockquote-reverse">
+      <p>Установив систему защиты, не ждите благоприятных отзывов от сотрудников.</p>
+      <p>Ни одно средство защиты, введенное в эксплуатацию, не прошло тестирования.</p>
+      <p>Ни одно средство защиты, прошедшее тестирование, не готово к вводу в эксплуатацию (закон противоположности).</p>
+      <p>Чем больше функций в системе защиты, тем больше вероятность, что одна из них не работает так как надо.</p>
+        <footer><cite>Законы Мерфи (Наблюдения о средствах защиты).</cite></footer>
+    </blockquote>
+  </div>
+</div>
+
+
+{% endblock %}

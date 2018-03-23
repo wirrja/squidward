@@ -1,0 +1,14 @@
+amqp==2.2.2
+billiard==3.5.0.3
+celery==4.1.0
+Django==2.0.1
+django-bootstrap3==9.1.0
+django-celery-beat==1.1.0
+django-celery-results==1.0.1
+django-postgres-copy==2.1.0
+ephem==3.7.6.0
+gunicorn==19.7.1
+kombu==4.1.0
+psycopg2==2.7.3.2
+pytz==2017.3
+vine==1.1.4

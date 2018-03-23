@@ -1,0 +1,96 @@
+.table_report {
+    margin-left: 30%;
+    margin-right: 30%;
+
+}
+
+
+.table_report .thead-inverse th {
+    text-align: center;
+    font-size: 14pt;
+    color: whitesmoke;
+    background-color: black;
+
+}
+
+.table_report .tbody_report td:first-child, td:last-child {
+    text-align: center;
+
+}
+
+.table_report .backward{
+    font-size: 13pt;
+    color: white;
+    background-color: darkgrey;
+}
+.table_report caption {
+    text-align: center;
+    font-size: 12pt;
+    font-weight: bold;
+}
+
+
+.index_report form {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.index_report label {
+    color: black;
+    font-style: inherit;
+    margin-right: 5px;
+}
+
+.button_report {
+    background-color: white;
+    color: black;
+    border: 2px solid #555555;
+}
+
+.button_report:hover {
+    background-color: #555555;
+    color: white;
+}
+
+#button_login {
+    background-color: white;
+    color: black;
+    border: 2px solid #555555;
+    width: 50%;
+    margin-left: 50%;
+    margin-top: 5px;
+
+}
+#button_login:hover {
+    background-color: #555555;
+    color: white;
+}
+
+nav a {
+    font-size: 12pt;
+    color: black;
+
+}
+
+
+
+
+.content {
+    font-family: "Fira Code";
+    padding: 50px;
+
+}
+
+.footer {
+    font-size: 8pt;
+
+}
+
+#footer {
+    width: 100%;
+}
+
+.auth_login {
+    display: inline-block;
+}

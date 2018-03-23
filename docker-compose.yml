@@ -1,0 +1,13 @@
+version: "2"
+
+services:
+  rabbitmq:
+    hostname: rabbit
+    image: rabbitmq:3-management
+    environment:
+      - RABBITMQ_DEFAULT_USER=celery
+      - RABBITMQ_DEFAULT_PASS=celerypassword
+      - RABBITMQ_DEFAULT_VHOST=squidward
+    ports:
+      - "5672:5672"
+      - "15672:15672"

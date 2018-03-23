@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Squidward is watching you!{% endblock %}
+
+{% block head %}{{ block.super }}
+{% endblock %}
+
+{% block content %}
+<div class="auth_login">
+  <form id="login" method="post">
+    {% csrf_token %}
+      {{ form.non_field_errors }}
+      {% for field in form.visible_fields %}
+      <label>{{ field.label }}</label>{{ field }}
+      {% endfor %}
+    <button id="button_login" type="ok">Вход</button>
+  </form>
+</div>
+{% endblock %}
+
